@@ -27,3 +27,7 @@ h2{
   background: rgb(221, 221, 185);
   border: 10px solid black;
 }
+
+#taskCard{
+  border: 10px solid black;
+}
