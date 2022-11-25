@@ -4,6 +4,17 @@ import {useState} from 'react'
 function App() {
   const [taskArr, setTaskArr] = useState(['Task 1', 'task 2', 'task 3'])
   
+  const [input, setInput] = useState('')
+
+  const handleClick = () => {
+    const id = taskArr.length + 1
+    setTaskArr((prev) => 
+      [...prev, {task:input, id: id, completed: false}] 
+    )
+    setInput('')
+  }
+
+
   const addTask = function() {
     const newList =  [...taskArr, 'task 4']
     return setTaskArr(newList)
@@ -22,15 +33,20 @@ function App() {
             <h2>
               Not Started
             </h2>
+            <ul>
             {taskArr.map(function (task) {
-              return (<div id="taskCard"> <h2>{task}</h2>
-              </div>)
+              return (<li id={task.id} completed={task.completed}>{}<h2>{task}</h2>
+              </li>)
             })}
+            </ul>
           </div>
-          <button>
-            onClick{() => {
-              addTask()
-            }}
+          <input value={input} onInput={(e) => {
+            setInput(e.target.value)
+          }}/>
+          <button onClick = {() => {
+              handleClick()
+            }}>
+          
           </button>
         </div>
       </body>
